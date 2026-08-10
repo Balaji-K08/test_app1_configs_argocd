@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-app1-app
+  namespace: argo
+spec: 
+  project: default
+  source:
+    repoURL: https://github.com/Balaji-K08/test_app1_configs_argocd.git
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app1
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
